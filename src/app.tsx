@@ -1,9 +1,12 @@
 import React from "react";
+import Body from "./components/body";
+import SearchInput from "./components/seachInput";
 
 export default function App() {
   return (
-    <section>
-      <h1>Todos</h1>
+    <section >
+      <Body/>
+      <SearchInput/>
     </section>
   );
 }
