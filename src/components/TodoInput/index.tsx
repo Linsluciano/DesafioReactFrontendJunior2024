@@ -15,14 +15,14 @@ const NewTodoTextInput: React.FC = () => {
   function addTodo(e: React.KeyboardEvent<HTMLInputElement>): void {
     if (textInput.current === null) return
     if (e.key === 'Enter' && textInput.current.value.trim().length > 0) {
-      // make new TODO object
+      // make new todo object
       const todo: Todo = {
         id: UUID(),
         title: textInput.current.value,
         isDone: true,
       }
 
-      // add new TODO to entire TodoList
+      // add new todo to entire TodoList
       setAppState({ todoList: [todo, ...appState.todoList] })
 
       // reset text input UI value
@@ -42,7 +42,6 @@ const NewTodoTextInput: React.FC = () => {
           onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => addTodo(e)}
           data-testid="new-todo-input-text"
           data-cy="new-todo-input-text"
-          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
         />
       </header>

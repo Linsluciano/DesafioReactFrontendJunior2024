@@ -32,6 +32,6 @@ test('render <TodoTextInput/>', () => {
     key: 'Enter',
   })
 
-  // text cleard
+  // text clear
   expect(input.value).toBe('')
 })

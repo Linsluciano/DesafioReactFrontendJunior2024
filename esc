@@ -1,0 +1,17 @@
+[33mcommit a8f3a2ee56b4b9991118cb8048620d62aba0c38f[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Author: Luciano Lins <luciano_lins1@hotmail.com>
+Date:   Sat Feb 10 20:38:04 2024 -0300
+
+    feature: new components add, built full input, datastructure and running applications
+
+[33mcommit a098921f7392b239a690ea19dd562e1a4906d72d[m
+Author: Luciano Lins <luciano_lins1@hotmail.com>
+Date:   Wed Feb 7 22:38:23 2024 -0300
+
+    feat: input component
+
+[33mcommit 7349f5d241b92be2da96d538f8e1e158b624a300[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Reinaldo Coelho Sartorelli <reinaldo.coelho@gmail.com>
+Date:   Thu Feb 1 13:52:49 2024 -0300
+
+    Initial commit
