@@ -1,6 +1,7 @@
-import type { RecoilState } from 'recoil'
+import type { RecoilState, } from 'recoil';
+import { atom } from 'recoil';
 
-import { atom } from 'recoil'
+
 
 export interface Todo {
     id: string
@@ -19,25 +20,23 @@ export interface Todo {
     APP_STATE = 'APP_STATE',
   }
   
-  function LoadAppStateFromLocalStorage(): AppState {
+  function LoadAppStateFromLocalStorage(): TodoListType {
     const stringifiedJSON: string | null = window.localStorage.getItem(
       LocalStorageKey.APP_STATE,
     )
-    if (typeof stringifiedJSON === 'string') {
-      const Loaded: AppState = JSON.parse(stringifiedJSON)
+    if (stringifiedJSON !== undefined && typeof stringifiedJSON === 'string') {
+      const Loaded:  TodoListType = JSON.parse(stringifiedJSON)
       return Loaded
     }
   
-    const BlankAppState: AppState = {
-      todoList: [],
-    }
-  
+    const BlankAppState: TodoListType = []
     return BlankAppState
   }
 
-  export const recoilState: RecoilState<AppState> = atom({
+
+  export const recoilState: RecoilState<TodoListType> = atom({
     default: LoadAppStateFromLocalStorage(),
     key: 'initialAppState',
-  })
+  });
 
 

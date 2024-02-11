@@ -1,6 +1,6 @@
 import React, { useState, createRef, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import type { AppState, Todo, TodoListType } from '../../../datastructure'
+import type {Todo, TodoListType } from '../../../datastructure'
 import { recoilState } from '../../../datastructure'
 
 import { Layout } from './style'
@@ -16,7 +16,7 @@ interface State {
 const Item: React.FC<Props> = ({ todo }) => {
 
 
-  const [appState, setAppState] = useRecoilState<AppState>(recoilState)
+  const [appState, setAppState] = useRecoilState<TodoListType>(recoilState)
   const editInput = createRef<HTMLInputElement>()
   const init: State = { onEdit: false }
   const [state, setState] = useState(init)
@@ -59,7 +59,7 @@ const Item: React.FC<Props> = ({ todo }) => {
   }
 
   const reverseCompleted = (id: Todo['id']): void => {
-    const toggled: TodoListType = appState.todoList.map((t) => {
+    const toggled: TodoListType = appState.map((t) => {
       // search item by name (id)
       if (t.id === id) {
         // change select item status
@@ -70,19 +70,19 @@ const Item: React.FC<Props> = ({ todo }) => {
       }
     })
 
-    setAppState({ todoList: toggled })
+    setAppState( toggled )
   }
 
   const removeItem = (terminate: Todo['id']): void => {
-    const removed: TodoListType = appState.todoList.filter(
+    const removed: TodoListType = appState.filter(
       (t: Todo): boolean => t.id !== terminate,
     )
 
-    setAppState({ todoList: removed })
+    setAppState( removed )
   }
 
   const handleTodoTextEdit = (e: React.ChangeEvent<HTMLInputElement>, onEdit: Todo['id']): void => {
-    const edited = appState.todoList.map((t: Todo): Todo => {
+    const edited = appState.map((t: Todo): Todo => {
       if (t.id === onEdit) {
         return { ...t, title: e.target.value }
       } else {
@@ -90,7 +90,7 @@ const Item: React.FC<Props> = ({ todo }) => {
       }
     })
 
-    setAppState({ todoList: edited })
+    setAppState( edited )
   }
 
   useEffect(() => {

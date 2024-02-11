@@ -2,20 +2,19 @@ import type { ReactElement } from "react";
 import React from "react";
 import { useRecoilState } from "recoil";
 import { useLocation } from "react-router-dom";
-import type { AppState, Todo } from "../../datastructure";
+import type {  Todo, TodoListType } from "../../datastructure";
 import { recoilState } from "../../datastructure";
 import Item from "./Items";
-import Data from '../../../db.json'
 import { Layout } from "./style";
 
 
 
 
 const TodoList: React.FC =()=>{
-    const[appState, setAppState] = useRecoilState<AppState>(recoilState)
+    const[appState, setAppState] = useRecoilState<TodoListType>(recoilState)
     const {pathname} = useLocation()
     function toggleAllCheckbox(e: React.ChangeEvent<HTMLInputElement>):void {
-        setAppState({todoList:appState.todoList.map((t: Todo): Todo=>({...t,isDone: e.target.checked}))})
+        setAppState(appState.map((t: Todo): Todo=>({...t,isDone: e.target.checked})))
     }
     
 
@@ -32,7 +31,7 @@ const TodoList: React.FC =()=>{
             />
             <label htmlFor="toggle-all">Mark all as complete</label>
             <ul className="todo-list" data-testid="todo-list">
-              {appState.todoList
+              {appState
                 .filter((t: Todo): boolean => {
                   switch (pathname) {
                     case '/':

@@ -1,21 +1,21 @@
 import React from 'react'
 import { useRecoilState } from 'recoil'
 
-import type { AppState, Todo } from '../../datastructure'
+import type { Todo, TodoListType } from '../../datastructure'
 import { recoilState } from '../../datastructure'
 
 import FilterLink from './FilterLink'
 import { Layout } from './style'
 
 const UnderBar: React.FC = () => {
-  const [appState, setAppState] = useRecoilState<AppState>(recoilState)
-  const completed: number = appState.todoList.filter(t => t.isDone === true).length 
-  const backlog: number = appState.todoList.filter(t => t.isDone === false).length 
+  const [appState, setAppState] = useRecoilState<TodoListType>(recoilState)
+  const completed: number = appState.filter(t => t.isDone === true).length 
+  const backlog: number = appState.filter(t => t.isDone === false).length 
 
   function clearCompleted(): void {
-    setAppState({
-      todoList: appState.todoList.filter((t: Todo) => !t.isDone),
-    })
+    setAppState(
+      appState.filter((t: Todo) => !t.isDone),
+    )
   }
 
   return (
