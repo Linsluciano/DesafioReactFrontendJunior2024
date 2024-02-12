@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useRecoilState} from 'recoil'
-import type { TodoListType } from './datastructure'
+import { TodoListType, LocalStorageKey } from './datastructure'
 import { recoilState } from './datastructure'
 import NewTodoTextInput from './components/TodoInput' 
 import { Layout } from './style'
@@ -9,28 +9,35 @@ import UnderBar from './components/TodoUnderBar'
 import axios from 'axios'
 
 const TodoAPP: React.FC = () => {
-
   const [appState, setAppState] = useRecoilState<TodoListType>(recoilState)
 
-  
-
-  useEffect(()  => {
-    const fetchData = async () => {
+  useEffect(():void =>{
+    const fetchData = async ()=>{
       try {
         const responseApi = await axios.get('https://my-json-server.typicode.com/EnkiGroup/DesafioReactFrontendJunior2024/todos');
-        setAppState([...appState, ...responseApi.data])
-      } catch (error) {
-        console.error('Erro ao recuperar dados do banco de dados:', error);
+        
+        const uniqueApiData = responseApi.data.filter( () =>!appState.find(existingTask => existingTask.id === uniqueApiData.id));
+
+        setAppState([...uniqueApiData, ...appState])
+      } catch(error) {
+        console.error ('Erro 404, os dados não foram recuperados:', error);
       }
-    };
+    }
+    
     fetchData();
-  }, []);
-  console.log(setAppState)
+  },[]);
+  useEffect((): void => {
+    window.localStorage.setItem(
+      LocalStorageKey.APP_STATE,
+      JSON.stringify(appState)  
+    );
+  });
+
   return (
     <Layout>
       <section className="todoapp">
           <NewTodoTextInput />
-          {setAppState.length ? (
+          {appState.length  ? (
           <>
             <TodoList />
             <UnderBar />

@@ -14,7 +14,6 @@ ReactDOM.render(
             <Route path="/" element={<TodoAPP />} />
             <Route path="/active" element={<TodoAPP />} />
             <Route path="/completed" element={<TodoAPP />} />
-            <Route path="/db.json" element={<TodoAPP />} />
             <Route path="*" element={"ERROR 404"} />
           </Routes>
         </RecoilRoot>

@@ -16,7 +16,9 @@ const UnderBar: React.FC = () => {
     setAppState(
       appState.filter((t: Todo) => !t.isDone),
     )
+    
   }
+ 
 
   return (
     <Layout>
