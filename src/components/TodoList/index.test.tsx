@@ -1,70 +1,68 @@
-// import { fireEvent } from '@testing-library/react'
-// import React from 'react'
+ import { fireEvent } from '@testing-library/react'
+ import React from 'react'
 
-// import type { AppState, TodoListType } from '../../datastructure'
-// import { TestRenderer } from '../../test'
+ import type { TodoListType } from '../../datastructure'
+ import { TestRenderer } from '../../test'
 
-// import TodoList from './index'
+ import TodoList from './index'
 
-// const initialRecoilState: TodoListType = 
-//   [
-//     {
-//       id: 'TsHx9eEN5Y4A',
-//       title: 'monster',
-//       isDone: true,
-//     },
-//     {
-//       id: 'ba91OwrK0Dt8',
-//       title: 'boss black',
-//       isDone: false,
-//     },
-//     {
-//       id: 'QwejYipEf5nk',
-//       title: 'caffe latte',
-//       isDone: false,
-//     },
-//   ],
+ const initialRecoilState: TodoListType = 
+   [
+     {
+       id: '2HR51S2shbr',
+       title: 'take me in your arms',
+       isDone: true,
+     },
+     {
+       id: 'F21efg1eG2g',
+       title: 'dont you let me go',
+       isDone: false,
+     },
+     {
+       id: 'JHM18nv86en',
+       title: 'i need you more and more',
+       isDone: false,
+     },
+   ]
 
 
-// test('should be render 3 todo items in initialAppState', () => {
-//   const screen = TestRenderer(<TodoList />, initialRecoilState)
+ test('should render all itens', () => {
+   const screen = TestRenderer(<TodoList />, initialRecoilState)
 
-//   expect(screen.getByTestId('todo-list')).toBeInTheDocument()
-//   expect(screen.getByTestId('todo-list').children.length).toBe(3)
-//   expect(Array.isArray(screen.getAllByTestId('todo-item'))).toBe(true)
-//   expect(screen.getAllByTestId('todo-item')[0]).toHaveTextContent('monster')
-//   expect(screen.getAllByTestId('todo-item')[1]).toHaveTextContent('boss black')
-//   expect(screen.getAllByTestId('todo-item')[2]).toHaveTextContent('caffe latte')
-// })
+   expect(screen.getByTestId('todo-list')).toBeInTheDocument()
+   expect(screen.getByTestId('todo-list').children.length).toBe(3)
+   expect(Array.isArray(screen.getAllByTestId('todo-item'))).toBe(true)
+   expect(screen.getAllByTestId('todo-item')[0]).toHaveTextContent('take me in your arms')
+   expect(screen.getAllByTestId('todo-item')[1]).toHaveTextContent('dont you let me go')
+   expect(screen.getAllByTestId('todo-item')[2]).toHaveTextContent('i need you more and more')
+ })
 
-// test('should be work delete todo button', () => {
-//   const screen = TestRenderer(<TodoList />, initialRecoilState)
+ test('should delete todo buton', () => {
+   const screen = TestRenderer(<TodoList />, initialRecoilState)
 
-//   // delete first item
-//   fireEvent.click(screen.getAllByTestId('delete-todo-btn')[0])
-//   // assertions
-//   expect(screen.getByTestId('todo-list').children.length).toBe(2)
-//   expect(Array.isArray(screen.getAllByTestId('todo-item'))).toBe(true)
-//   expect(screen.getAllByTestId('todo-item')[0]).toHaveTextContent('boss black')
-//   expect(screen.getAllByTestId('todo-item')[1]).toHaveTextContent('caffe latte')
-// })
 
-// test('should be work correctly all completed:true|false checkbox toggle button', () => {
-//   const screen = TestRenderer(<TodoList />, initialRecoilState)
+   fireEvent.click(screen.getAllByTestId('delete-todo-btn')[0])
 
-//   // toggle on
-//   fireEvent.click(screen.getByTestId('toggle-all-btn'))
-//   // should be completed all todo items
-//   expect((screen.getAllByTestId('todo-item-complete-check')[0] as HTMLInputElement).checked).toBe(true) /* eslint-disable-line prettier/prettier */
-//   expect((screen.getAllByTestId('todo-item-complete-check')[1] as HTMLInputElement).checked).toBe(true) /* eslint-disable-line prettier/prettier */
-//   expect((screen.getAllByTestId('todo-item-complete-check')[2] as HTMLInputElement).checked).toBe(true) /* eslint-disable-line prettier/prettier */
+   expect(screen.getByTestId('todo-list').children.length).toBe(2)
+   expect(Array.isArray(screen.getAllByTestId('todo-item'))).toBe(true)
+   expect(screen.getAllByTestId('todo-item')[0]).toHaveTextContent('dont you let me go')
+   expect(screen.getAllByTestId('todo-item')[1]).toHaveTextContent('i need you more and more')
+ })
 
-//   // toggle off
-//   fireEvent.click(screen.getByTestId('toggle-all-btn'))
-//   // should be not comleted all todo items
-//   expect((screen.getAllByTestId('todo-item-complete-check')[0] as HTMLInputElement).checked).toBe(false) /* eslint-disable-line prettier/prettier */
-//   expect((screen.getAllByTestId('todo-item-complete-check')[1] as HTMLInputElement).checked).toBe(false) /* eslint-disable-line prettier/prettier */
-//   expect((screen.getAllByTestId('todo-item-complete-check')[2] as HTMLInputElement).checked).toBe(false) /* eslint-disable-line prettier/prettier */
-// })
+ test('should work all completed:true|false checkbox toggle button', () => {
+   const screen = TestRenderer(<TodoList />, initialRecoilState)
+
+
+   fireEvent.click(screen.getByTestId('toggle-all-btn'))
+   expect((screen.getAllByTestId('todo-item-complete-check')[0] as HTMLInputElement).checked).toBe(true) 
+   expect((screen.getAllByTestId('todo-item-complete-check')[1] as HTMLInputElement).checked).toBe(true) 
+   expect((screen.getAllByTestId('todo-item-complete-check')[2] as HTMLInputElement).checked).toBe(true) 
+
+
+   fireEvent.click(screen.getByTestId('toggle-all-btn'))
+   expect((screen.getAllByTestId('todo-item-complete-check')[0] as HTMLInputElement).checked).toBe(false) 
+   expect((screen.getAllByTestId('todo-item-complete-check')[1] as HTMLInputElement).checked).toBe(false) 
+   expect((screen.getAllByTestId('todo-item-complete-check')[2] as HTMLInputElement).checked).toBe(false) 
+ })
 
 export {}

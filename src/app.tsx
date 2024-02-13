@@ -17,6 +17,7 @@ const TodoAPP: React.FC = () => {
         const responseApi = await axios.get('https://my-json-server.typicode.com/EnkiGroup/DesafioReactFrontendJunior2024/todos');
         
         const uniqueApiData = responseApi.data.filter( () =>!appState.find(existingTask => existingTask.id === uniqueApiData.id));
+          
 
         setAppState([...uniqueApiData, ...appState])
       } catch(error) {

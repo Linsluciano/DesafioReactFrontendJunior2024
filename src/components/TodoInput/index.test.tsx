@@ -1,39 +1,38 @@
-// import { fireEvent } from '@testing-library/react'
-// import React from 'react'
+import { fireEvent } from '@testing-library/react'
+import React from 'react'
 
-// import { TestRenderer } from '../../test'
+import { TestRenderer } from '../../test'
 
-// import NewTodoTextInput from './index'
+import NewTodoTextInput from './index'
 
-// test('render <TodoTextInput/>', () => {
-//   const screen = TestRenderer(<NewTodoTextInput />)
-//   const input = screen.getByTestId('new-todo-input-text') as HTMLInputElement
-
-
-//   expect(screen.getByText('todos')).toBeInTheDocument()
+test('render <TodoTextInput/>', () => {
+  const screen = TestRenderer(<NewTodoTextInput />)
+  const input = screen.getByTestId('new-todo-input-text') as HTMLInputElement
 
 
-//   expect(
-//     screen.getByPlaceholderText('What needs to be done?'),
-//   ).toBeInTheDocument()
+  expect(screen.getByText('todos')).toBeInTheDocument()
 
 
-//   fireEvent.change(input, {
-//     target: { value: 'Cleaning out my closet' },
-//   })
+  expect(
+    screen.getByPlaceholderText('What needs to be done?'),
+  ).toBeInTheDocument()
 
 
-//   expect(input.value).toBe('Cleaning out my closet')
+  fireEvent.change(input, {
+    target: { value: 'Cleaning out my closet' }, //eminem - cleaning out my closet
+  })
 
 
-//   fireEvent.keyPress(input, {
-//     charCode: 13,
-//     code: 13,
-//     key: 'Enter',
-//   })
+  expect(input.value).toBe('Cleaning out my closet') //eminem - cleaning out my closet
 
-//   // text clear
-//   expect(input.value).toBe('')
-// })
 
-export {}
+  fireEvent.keyPress(input, {
+    charCode: 13,
+    code: 13,
+    key: 'Enter',
+  })
+
+  // text clear
+  expect(input.value).toBe('')
+})
+
