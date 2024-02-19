@@ -13,13 +13,13 @@ const FooterSection: React.FC = memo(
         </p>
         <p>
             Created by{' '}
-            <a href="https://github.com/nartc">Chau Tran</a>
+            <a href="" target='_blank'>Chau Tran</a>
         </p>
         <p>
             Utilized{' '}
             <a href="https://xstate.js.org/">XState </a>
             by {' '}
-            <a href="">David K</a>
+            <a href="#">David K</a>
         </p>
         <p>
             Part of <a href="http://todomvc.com">TodoMVC</a>
