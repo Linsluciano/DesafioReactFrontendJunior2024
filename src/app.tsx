@@ -7,9 +7,17 @@ import { Layout } from './style'
 import TodoList from './components/TodoList'
 import UnderBar from './components/TodoUnderBar'
 import axios from 'axios'
+import FooterSection from './components/Footer/footer'
 
 const TodoAPP: React.FC = () => {
   const [appState, setAppState] = useRecoilState<TodoListType>(recoilState)
+  useEffect((): void => {
+    window.localStorage.setItem(
+      LocalStorageKey.APP_STATE,
+      JSON.stringify(appState)  
+    );
+  });
+
 
   useEffect(():void =>{
     const fetchData = async ()=>{
@@ -21,19 +29,13 @@ const TodoAPP: React.FC = () => {
 
         setAppState([...uniqueApiData, ...appState])
       } catch(error) {
-        console.error ('Erro 404, os dados não foram recuperados:', error);
+        console.log('complete your tasks before add new tasks or same from data-base')
       }
     }
     
     fetchData();
   },[]);
-  useEffect((): void => {
-    window.localStorage.setItem(
-      LocalStorageKey.APP_STATE,
-      JSON.stringify(appState)  
-    );
-  });
-
+  
   return (
     <Layout>
       <section className="todoapp">
@@ -42,9 +44,12 @@ const TodoAPP: React.FC = () => {
           <>
             <TodoList />
             <UnderBar />
+
           </>
         ) : null}
       </section>
+      <FooterSection/>
+
     </Layout>
   )
 }

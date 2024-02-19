@@ -36,31 +36,31 @@ export const Layout = styled.div`
     font-size: 100px;
     font-weight: 100;
     text-align: center;
-    color: rgba(175, 47, 47, 0.15);
+    color: rgba(175, 47, 47, 0.85);
     -webkit-text-rendering: optimizeLegibility;
     -moz-text-rendering: optimizeLegibility;
     text-rendering: optimizeLegibility;
   }
 
-  .info {
+  .information {
     margin: 65px auto 0;
     color: #bfbfbf;
-    font-size: 10px;
+    font-size: 12px;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     text-align: center;
   }
 
-  .info p {
-    line-height: 1;
+  .information p {
+    line-height: 2;
   }
 
-  .info a {
-    color: inherit;
+  .information a {
+    color: black;
     text-decoration: none;
     font-weight: 400;
   }
 
-  .info a:hover {
+  .information a:hover {
     text-decoration: underline;
   }
 `
